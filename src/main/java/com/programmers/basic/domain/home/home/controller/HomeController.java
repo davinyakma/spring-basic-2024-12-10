@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
+    private int age = 22;
+
     @GetMapping("/")
     @ResponseBody
     public String showMain() {
@@ -16,5 +18,11 @@ public class HomeController {
     @ResponseBody
     public String showAbout() {
         return "저는 홍길동입니다.";
+    }
+
+    @GetMapping("/ageUp")
+    @ResponseBody
+    public int getAgeAndUp() {
+        return age++;
     }
 }
