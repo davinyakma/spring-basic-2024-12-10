@@ -96,7 +96,7 @@ public class HomeController {
     @GetMapping("/article")
     @ResponseBody
     public Article getArticle() {
-        return new Article(1, "제목", "내용");
+        return new Article(1, "제목", "내용", false);
     }
 }
 
@@ -106,4 +106,5 @@ class Article {
     private long id;
     private String title;
     private String body;
+    private boolean published;
 }
