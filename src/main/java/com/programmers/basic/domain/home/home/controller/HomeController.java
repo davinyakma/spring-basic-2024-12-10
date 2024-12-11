@@ -101,6 +101,5 @@ public class HomeController {
 
 @AllArgsConstructor
 class Article {
-    private long id;
-
+    public long id;
 }
