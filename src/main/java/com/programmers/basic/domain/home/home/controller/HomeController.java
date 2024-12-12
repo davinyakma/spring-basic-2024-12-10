@@ -125,19 +125,24 @@ public class HomeController {
     @ResponseBody
     public String getArticlesDotHtml() {
         Article article1 = Article.builder().id(1).title("제목1").body("내용1").build();
-        Article article2 = Article.builder().id(2).title("제목1").body("내용1").build();
+        Article article2 = Article.builder().id(2).title("제목2").body("내용1").build();
 
         return """
                 <ul>
                     <li>
-                        1번 / 제목1
+                        %d번 / %s
                     </li>
                 
                     <li>
-                        2번 / 제목2
+                        %d번 / %s
                     </li>
                 </ul>
-                """;
+                """.formatted(
+                article1.getId(),
+                article1.getTitle(),
+                article2.getId(),
+                article2.getTitle()
+        );
     }
 }
 
