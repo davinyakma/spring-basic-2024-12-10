@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class HomeController {
@@ -125,24 +126,18 @@ public class HomeController {
     @ResponseBody
     public String getArticlesDotHtml() {
         Article article1 = Article.builder().id(1).title("제목1").body("내용1").build();
-        Article article2 = Article.builder().id(2).title("제목2").body("내용1").build();
+        Article article2 = Article.builder().id(2).title("제목2").body("내용2").build();
+        Article article3 = Article.builder().id(3).title("제목3").body("내용3").build();
+        Article article4 = Article.builder().id(4).title("제목4").body("내용4").build();
 
-        return """
-                <ul>
-                    <li>
-                        %d번 / %s
-                    </li>
-                
-                    <li>
-                        %d번 / %s
-                    </li>
-                </ul>
-                """.formatted(
-                article1.getId(),
-                article1.getTitle(),
-                article2.getId(),
-                article2.getTitle()
-        );
+        List<Article> articles = List.of(article1, article2, article3, article4);
+
+        String lis = articles
+                .stream()
+                .map(article -> "<li>%d번 / %s</li>".formatted(article.getId(), article.getTitle()))
+                .collect(Collectors.joining("\n"));
+
+        return "<ul>\n" + lis + "\n</ul>";
     }
 }
 
