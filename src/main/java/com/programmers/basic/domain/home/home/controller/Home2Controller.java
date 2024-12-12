@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequiredArgsConstructor
 @RequestMapping("/home2")
+@RequiredArgsConstructor
 public class Home2Controller {
     private final List<Integer> ages;
 
