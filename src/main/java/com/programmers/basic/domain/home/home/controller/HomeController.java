@@ -107,8 +107,8 @@ public class HomeController {
     @ResponseBody
     public List<Article> getArticles() {
         return List.of(
-                Article.builder().title("제목1").body("내용1").build(),
-                Article.builder().title("제목2").body("내용2").build()
+                Article.builder().id(1).title("제목1").body("내용1").build(),
+                Article.builder().id(2).title("제목2").body("내용2").build()
         );
     }
 
@@ -116,11 +116,31 @@ public class HomeController {
     @ResponseBody
     public Map<String, Article> articleMap() {
         return Map.of(
-                "article1",Article.builder().title("제목1").body("내용1").build(),
-                "article2",Article.builder().title("제목2").body("내용2").build()
+                "article1", Article.builder().id(1).title("제목1").body("내용1").build(),
+                "article2", Article.builder().id(2).title("제목2").body("내용2").build()
         );
     }
+
+    @GetMapping("/articleList.html")
+    @ResponseBody
+    public String getArticlesDotHtml() {
+        Article article1 = Article.builder().id(1).title("제목1").body("내용1").build();
+        Article article2 = Article.builder().id(2).title("제목1").body("내용1").build();
+
+        return """
+                <ul>
+                    <li>
+                        1번 / 제목1
+                    </li>
+                
+                    <li>
+                        2번 / 제목2
+                    </li>
+                </ul>
+                """;
+    }
 }
+
 
 @Builder
 @Getter
