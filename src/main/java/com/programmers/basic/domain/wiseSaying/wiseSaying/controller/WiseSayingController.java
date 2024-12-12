@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
+@ResponseBody // 여기에 붙이면 모든 메서드에 적용됨
 public class WiseSayingController {
     private final WiseSayingService wiseSayingService;
 
@@ -17,7 +18,6 @@ public class WiseSayingController {
     }
 
     @GetMapping("/wiseSayings")
-    @ResponseBody
     public List<WiseSaying> getItems() {
         return wiseSayingService.findAll();
     }
